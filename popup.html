@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AdShield Pro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+<div class="shell" id="shell">
+
+  <!-- noise texture overlay -->
+  <div class="noise"></div>
+
+  <!-- ═══ HEADER ═══ -->
+  <header class="hdr">
+    <div class="brand">
+      <div class="brand-icon" id="brandIcon">
+        <svg width="22" height="25" viewBox="0 0 22 25" fill="none">
+          <path d="M11 0.5L1 4.2V12C1 17.6 5.4 22.8 11 24C16.6 22.8 21 17.6 21 12V4.2L11 0.5Z"
+                fill="url(#lg)" stroke="rgba(198,255,0,0.3)" stroke-width="0.5"/>
+          <path d="M7 12.5L10 15.5L15.5 9.5" stroke="#111" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+          <defs>
+            <linearGradient id="lg" x1="1" y1="0" x2="21" y2="24" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#C6FF00"/>
+              <stop offset="100%" stop-color="#76b900"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <div class="brand-name">ADSHIELD <span>PRO</span></div>
+        <div class="brand-sub">YOUTUBE GUARDIAN</div>
+      </div>
+    </div>
+
+    <label class="pwr" id="pwrLabel" title="Toggle">
+      <input type="checkbox" id="pwrChk" checked hidden>
+      <div class="pwr-body">
+        <div class="pwr-knob"></div>
+      </div>
+    </label>
+  </header>
+
+  <!-- ═══ STATUS STRIP ═══ -->
+  <div class="strip" id="strip">
+    <span class="strip-dot" id="stripDot"></span>
+    <span class="strip-msg" id="stripMsg">ACTIVE — ALL SHIELDS UP</span>
+    <span class="yt-chip">
+      <svg width="13" height="9" viewBox="0 0 13 9"><rect width="13" height="9" rx="1.8" fill="#FF0000"/>
+      <path d="M5 2.5L9.5 4.5L5 6.5V2.5Z" fill="#fff"/></svg>
+      YOUTUBE
+    </span>
+  </div>
+
+  <!-- ═══ CENTRAL ARC COUNTER ═══ -->
+  <div class="arc-wrap">
+    <svg class="arc-svg" viewBox="0 0 200 200" fill="none">
+      <!-- Track ring -->
+      <circle cx="100" cy="100" r="80" stroke="#1e1e1e" stroke-width="6"/>
+      <!-- Animated glow arc -->
+      <circle cx="100" cy="100" r="80"
+              stroke="url(#arcGrad)"
+              stroke-width="6"
+              stroke-linecap="round"
+              stroke-dasharray="502"
+              stroke-dashoffset="502"
+              transform="rotate(-90 100 100)"
+              id="arcProgress"/>
+      <!-- Inner tick marks -->
+      <g id="ticks" opacity="0.25"></g>
+      <defs>
+        <linearGradient id="arcGrad" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#C6FF00"/>
+          <stop offset="100%" stop-color="#76FF03"/>
+        </linearGradient>
+      </defs>
+    </svg>
+
+    <div class="arc-center">
+      <div class="arc-label">ADS KILLED</div>
+      <div class="arc-num" id="arcNum">0</div>
+      <div class="arc-unit">TOTAL</div>
+    </div>
+  </div>
+
+  <!-- ═══ STATS ROW ═══ -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-n" id="statToday">0</div>
+      <div class="stat-l">TODAY</div>
+    </div>
+    <div class="stat-sep"></div>
+    <div class="stat">
+      <div class="stat-n" id="statSession">0</div>
+      <div class="stat-l">SESSION</div>
+    </div>
+    <div class="stat-sep"></div>
+    <div class="stat">
+      <div class="stat-n accent">YT</div>
+      <div class="stat-l">FOCUS</div>
+    </div>
+  </div>
+
+  <!-- ═══ SHIELDS GRID ═══ -->
+  <div class="shields-label">PROTECTION MATRIX</div>
+  <div class="shields" id="shields">
+
+    <div class="shield-tile active" data-key="skipVideoAds">
+      <div class="tile-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M3 4L10 9L3 14V4Z" fill="currentColor"/>
+          <rect x="12" y="4" width="3" height="10" rx="1" fill="currentColor"/>
+        </svg>
+      </div>
+      <div class="tile-body">
+        <div class="tile-name">Skip Ads</div>
+        <div class="tile-desc">Pre-roll & mid-roll</div>
+      </div>
+      <div class="tile-dot"></div>
+    </div>
+
+    <div class="shield-tile active" data-key="blockOverlays">
+      <div class="tile-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <rect x="2" y="2" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.6" fill="none"/>
+          <path d="M5 9H13M9 5V13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                transform="rotate(45 9 9)"/>
+        </svg>
+      </div>
+      <div class="tile-body">
+        <div class="tile-name">Overlays</div>
+        <div class="tile-desc">Banners & pop-ups</div>
+      </div>
+      <div class="tile-dot"></div>
+    </div>
+
+    <div class="shield-tile active" data-key="networkShield">
+      <div class="tile-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="1.6" fill="none"/>
+          <path d="M9 2C9 2 6 5.5 6 9s3 7 3 7" stroke="currentColor" stroke-width="1.3" fill="none"/>
+          <path d="M9 2C9 2 12 5.5 12 9s-3 7-3 7" stroke="currentColor" stroke-width="1.3" fill="none"/>
+          <path d="M2 9h14" stroke="currentColor" stroke-width="1.3"/>
+        </svg>
+      </div>
+      <div class="tile-body">
+        <div class="tile-name">Network</div>
+        <div class="tile-desc">Block ad requests</div>
+      </div>
+      <div class="tile-dot"></div>
+    </div>
+
+    <div class="shield-tile active" data-key="blockTrackers">
+      <div class="tile-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <circle cx="9" cy="9" r="3" fill="currentColor" opacity=".5"/>
+          <circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.3" fill="none" stroke-dasharray="2 2"/>
+          <circle cx="9" cy="9" r="7.5" stroke="currentColor" stroke-width="1" fill="none" opacity=".4"/>
+        </svg>
+      </div>
+      <div class="tile-body">
+        <div class="tile-name">Trackers</div>
+        <div class="tile-desc">Analytics & pixels</div>
+      </div>
+      <div class="tile-dot"></div>
+    </div>
+
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="ftr">
+    <button class="ftr-btn" id="btnReset">
+      <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+        <path d="M1.5 5.5a4 4 0 1 1 1 2.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        <path d="M1.5 8.5V5.5H4.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      RESET
+    </button>
+    <span class="ftr-ver">v2.0.0</span>
+    <button class="ftr-btn" id="btnSettings">
+      <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+        <circle cx="5.5" cy="5.5" r="1.8" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M5.5 1v1M5.5 9v1M10 5.5H9M2 5.5H1M8.57 2.43l-.7.7M3.13 7.87l-.7.7M8.57 8.57l-.7-.7M3.13 3.13l-.7-.7"
+              stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+      SETTINGS
+    </button>
+  </footer>
+
+  <!-- ═══ SETTINGS DRAWER ═══ -->
+  <div class="drawer" id="drawer">
+    <div class="drawer-hdr">
+      <span class="drawer-title">SETTINGS</span>
+      <button class="drawer-close" id="drawerClose">✕</button>
+    </div>
+
+    <div class="drawer-body">
+      <div class="dset">
+        <div class="dset-label">FILTER STRENGTH</div>
+        <div class="dset-pills" id="pillGroup">
+          <button class="dpill" data-val="lite">LITE</button>
+          <button class="dpill on" data-val="standard">STANDARD</button>
+          <button class="dpill" data-val="max">MAX</button>
+        </div>
+      </div>
+
+      <div class="dset">
+        <div class="dset-label">WHITELIST DOMAIN</div>
+        <div class="dset-row">
+          <input class="dset-input" id="domInput" placeholder="example.com" type="text">
+          <button class="dset-add" id="addDom">ADD</button>
+        </div>
+        <div class="wl-list" id="wlList"></div>
+      </div>
+
+      <div class="dset">
+        <div class="dset-label">DANGER ZONE</div>
+        <button class="danger-btn" id="dangerReset">RESET ALL STATISTICS</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /shell -->
+<script src="popup.js"></script>
+</body>
+</html>
